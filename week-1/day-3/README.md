@@ -16,8 +16,10 @@ SQL Joins Assignment
 - GitHub
 
 ## Files Included
-- solutions.sql
-- outputs.txt
+- sql_day-3
+-sql_joins_assignment.pdf
+-sql_joins_starter.sql
+-README.md
 
 ## Description
 This assignment focuses on SQL joins and how multiple tables can be connected using different types of joins. Queries were executed using SQL Fiddle and results were documented properly.
