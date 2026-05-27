@@ -19,8 +19,8 @@ SQL Practice and Database Basics
 - GitHub
 
 ## Files Included
-- practice.sql
-- outputs.txt
+- datacreation.sql
+- sql day_3.txt
 - README.md
 
 ## Description
