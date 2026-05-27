@@ -20,7 +20,7 @@ SQL Practice and Database Basics
 
 ## Files Included
 - datacreation.sql
-- sql day_3.txt
+- sql day_2.txt
 - README.md
 
 ## Description
