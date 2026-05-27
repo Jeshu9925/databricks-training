@@ -18,6 +18,8 @@ GitHub Repository Setup and Introduction to Databricks
 - SQL Fiddle
 
 ## Files Included
+- datacreation.sql
+- day-1_sql
 - README.md
 
 ## Description
