@@ -21,8 +21,10 @@ SQL Window Functions and CTEs
 - GitHub
 
 ## Files Included
-- solutions.sql
-- outputs.txt
+- README.md
+- sol_qry_day-4
+- sql_window_functions_cte_assignment.pdf
+- sql_window_functions_cte_starter.sql
 
 ## Description
 This assignment focuses on advanced SQL concepts including window functions and Common Table Expressions (CTEs). Various analytical queries were executed and tested using SQL Fiddle.
