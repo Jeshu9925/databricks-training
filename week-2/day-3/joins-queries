@@ -1,0 +1,204 @@
+-- 1. EMPLOYEES AND THEIR MANAGERS
+SELECT e.emp_name AS employee,
+m.emp_name AS manager
+FROM employees e
+LEFT JOIN employees m
+ON e.manager_id = m.emp_id;
+
+-- 2. EMPLOYEES AND DEPARTMENTS
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id = d.dept_id;
+
+-- 3. EMPLOYEES WHO REPORT TO MANAGERS
+SELECT e.emp_name, m.emp_name AS manager
+FROM employees e
+INNER JOIN employees m
+ON e.manager_id = m.emp_id;
+
+-- 4. EMPLOYEES AND DEPARTMENTS
+SELECT e.emp_name, d.dept_name
+FROM departments d
+RIGHT JOIN employees e
+ON d.dept_id = e.dept_id;
+
+-- 5. EMPLOYEES WITHOUT DEPARTMENT
+SELECT e.emp_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id = d.dept_id
+WHERE d.dept_id IS NULL;
+
+-- 6. EMPLOYEES AND PROJECTS
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 7. EMPLOYEES WITH PROJECTS
+SELECT e.emp_name, p.project_name
+FROM employees e
+INNER JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 8. ALL EMPLOYEES AND PROJECTS
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p
+ON e.emp_id = p.emp_id
+
+UNION
+
+SELECT e.emp_name, p.project_name
+FROM employees e
+RIGHT JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 9. EMPLOYEES AND SALARIES
+SELECT emp_name, NULL AS salary
+FROM employees;
+
+-- 10. EMPLOYEES AND DEPARTMENTS
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id = d.dept_id;
+
+-- 11. DEPARTMENTS AND EMPLOYEES
+SELECT d.dept_name, e.emp_name
+FROM departments d
+LEFT JOIN employees e
+ON d.dept_id = e.dept_id;
+
+-- 12. EMPLOYEES WITH CONTACT INFO
+SELECT emp_name
+FROM employees;
+
+-- 13. ALL EMPLOYEES AND DEPARTMENTS
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id = d.dept_id
+
+UNION
+
+SELECT e.emp_name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d
+ON e.dept_id = d.dept_id;
+
+-- 14. EMPLOYEES WITHOUT PROJECTS
+SELECT e.emp_name
+FROM employees e
+LEFT JOIN projects p
+ON e.emp_id = p.emp_id
+WHERE p.project_id IS NULL;
+
+-- 15. EMPLOYEES AND PROJECT NAMES
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 16. PROJECTS AND EMPLOYEES
+SELECT p.project_name, e.emp_name
+FROM projects p
+LEFT JOIN employees e
+ON p.emp_id = e.emp_id;
+
+-- 17. EMPLOYEES WITH MANAGER AND PROJECT
+SELECT e.emp_name,
+m.emp_name AS manager,
+p.project_name
+FROM employees e
+INNER JOIN employees m
+ON e.manager_id = m.emp_id
+INNER JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 18. EMPLOYEES WITH DEPARTMENTS ONLY
+SELECT e.emp_name, d.dept_name
+FROM employees e
+INNER JOIN departments d
+ON e.dept_id = d.dept_id;
+
+-- 19. EMPLOYEES AND DEPARTMENTS
+SELECT e.emp_name, d.dept_name
+FROM employees e
+INNER JOIN departments d
+ON e.dept_id = d.dept_id;
+
+-- 20. ALL DEPARTMENTS AND EMPLOYEES
+SELECT d.dept_name, e.emp_name
+FROM departments d
+LEFT JOIN employees e
+ON d.dept_id = e.dept_id;
+
+-- 21. PROJECT EMPLOYEES WITHOUT DEPARTMENT
+SELECT e.emp_name, p.project_name
+FROM employees e
+INNER JOIN projects p
+ON e.emp_id = p.emp_id
+WHERE e.dept_id IS NULL;
+
+-- 22. EMPLOYEE COUNT BY DEPARTMENT
+SELECT d.dept_name,
+COUNT(e.emp_id) AS employee_count
+FROM departments d
+LEFT JOIN employees e
+ON d.dept_id = e.dept_id
+GROUP BY d.dept_name;
+
+-- 23. EMPLOYEES REPORTING TO MANAGER
+SELECT e.emp_name, m.emp_name AS manager
+FROM employees e
+INNER JOIN employees m
+ON e.manager_id = m.emp_id;
+
+-- 24. ALL EMPLOYEES WITH MANAGERS
+SELECT e.emp_name,
+m.emp_name AS manager
+FROM employees e
+LEFT JOIN employees m
+ON e.manager_id = m.emp_id;
+
+-- 25. DEPARTMENT EMPLOYEE COUNT
+SELECT d.dept_name,
+COUNT(e.emp_id)
+FROM departments d
+LEFT JOIN employees e
+ON d.dept_id = e.dept_id
+GROUP BY d.dept_name;
+
+-- 26. EMPLOYEES AND DEPARTMENTS
+SELECT e.emp_name, d.dept_name
+FROM departments d
+LEFT JOIN employees e
+ON d.dept_id = e.dept_id;
+
+-- 27. EMPLOYEES WITHOUT SALARY RECORDS
+SELECT emp_name
+FROM employees;
+
+-- 28. EMPLOYEES AND PROJECT ASSIGNMENTS
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 29. EMPLOYEES, DEPARTMENTS AND PROJECTS
+SELECT e.emp_name,
+d.dept_name,
+p.project_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id = d.dept_id
+LEFT JOIN projects p
+ON e.emp_id = p.emp_id;
+
+-- 30. EMPLOYEES WITH OR WITHOUT DEPARTMENT
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id = d.dept_id;
