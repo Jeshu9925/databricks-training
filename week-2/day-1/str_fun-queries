@@ -1,0 +1,62 @@
+-- 1. LENGTH / CHAR_LENGTH
+SELECT full_name, LENGTH(full_name) FROM employees;
+SELECT full_name, CHAR_LENGTH(full_name) FROM employees;
+
+-- 2. UPPER / LOWER
+SELECT UPPER(department), LOWER(city) FROM employees;
+
+-- 3. TRIM / LTRIM / RTRIM
+SELECT
+TRIM(full_name),
+LTRIM(full_name),
+RTRIM(full_name)
+FROM employees;
+
+-- 4. CONCAT
+SELECT CONCAT(full_name, ' - ', department) AS emp_details
+FROM employees;
+
+-- 5. CONCAT_WS
+SELECT CONCAT_WS(' | ', emp_id, full_name, city)
+FROM employees;
+
+-- 6. SUBSTRING / SUBSTR
+SELECT SUBSTRING(email, 1, 7) FROM employees;
+SELECT SUBSTR(email, 1, 5) FROM employees;
+
+-- 7. LEFT / RIGHT
+SELECT LEFT(full_name, 4), RIGHT(city, 3)
+FROM employees;
+
+-- 8. INSTR
+SELECT email, INSTR(email, '@') FROM employees;
+
+-- 9. LOCATE
+SELECT email, LOCATE('.', email) FROM employees;
+
+-- 10. REPLACE
+SELECT REPLACE(department, 'Data', 'Big Data')
+FROM employees;
+
+-- 11. REVERSE
+SELECT full_name, REVERSE(full_name)
+FROM employees;
+
+-- 12. LPAD / RPAD
+SELECT LPAD(emp_id, 5, '0') FROM employees;
+SELECT RPAD(city, 15, '*') FROM employees;
+
+-- 13. TRIM + REPLACE
+SELECT TRIM(REPLACE(city, ' ', ''))
+FROM employees;
+
+-- 14. IFNULL
+SELECT full_name, IFNULL(remarks, 'No remarks')
+FROM employees;
+
+-- 15. COALESCE
+SELECT full_name, COALESCE(remarks, 'N/A')
+FROM employees;
+
+-- 16. FIND_IN_SET
+SELECT FIND_IN_SET('Analytics', 'Data,Analytics,AI');
