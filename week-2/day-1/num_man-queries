@@ -1,0 +1,44 @@
+-- 1. ABS
+SELECT ABS(-100);
+
+-- 2. ROUND
+SELECT ROUND(base_salary, 0) FROM employee_salary;
+SELECT ROUND(base_salary, 2) FROM employee_salary;
+
+-- 3. CEILING / CEIL
+SELECT CEIL(base_salary) FROM employee_salary;
+
+-- 4. FLOOR
+SELECT FLOOR(base_salary) FROM employee_salary;
+
+-- 5. TRUNCATE
+SELECT TRUNCATE(base_salary, 1) FROM employee_salary;
+
+-- 6. MOD
+SELECT MOD(experience_years, 2) FROM employee_salary;
+
+-- 7. POWER / POW
+SELECT POWER(2, 3);
+SELECT POW(5, 2);
+
+-- 8. SQRT
+SELECT SQRT(64);
+
+-- 9. SIGN
+SELECT SIGN(base_salary) FROM employee_salary;
+
+-- 10. RAND
+SELECT RAND();
+
+-- 11. FORMAT
+SELECT FORMAT(base_salary, 2) FROM employee_salary;
+
+-- 12. GREATEST
+SELECT emp_name,
+GREATEST(base_salary, IFNULL(bonus, 0))
+FROM employee_salary;
+
+-- 13. LEAST
+SELECT emp_name,
+LEAST(base_salary, IFNULL(bonus, 0))
+FROM employee_salary;
