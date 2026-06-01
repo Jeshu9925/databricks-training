@@ -1,0 +1,17 @@
+-- EMAIL DATA TABLE
+CREATE TABLE email_data (
+id INT PRIMARY KEY,
+email VARCHAR(100),
+sample_text VARCHAR(100),
+phone_number VARCHAR(20)
+);
+
+INSERT INTO email_data VALUES
+(1,'karthik@gmail.com','123ABc','+91-9989454737'),
+(2,'karthik44@gmail.com','abc123','+91-9876543210'),
+(3,'karthik.kumar@gmail.com','123abc567','+91-9123456789'),
+(4,'karthik_kumar44@gmail.com','abc123gef','+91-9988776655'),
+(5,'karthik-kumar44@gmail.com','abcdefghi123','+91-9871234567'),
+(6,'fardeen@st2.ai','12345678abc','+91-9012345678'),
+(7,'karthik@sb2.com','abcDEF123','+91-9981112233'),
+(8,'vinay@infosys.com','456xyz789','+91-9982223344');
