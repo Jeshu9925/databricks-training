@@ -1,0 +1,9 @@
+Employee CSV file loaded successfully.
+
+Displayed all records.
+
+Schema verified successfully.
+
+Row count displayed.
+
+Column names displayed.
