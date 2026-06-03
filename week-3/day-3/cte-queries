@@ -1,0 +1,107 @@
+-- 1. SIMPLE CTE
+WITH emp_cte AS
+(
+    SELECT *
+    FROM employees
+)
+SELECT *
+FROM emp_cte;
+
+-- 2. EMPLOYEES WITH SALARY > 60000
+WITH emp_cte AS
+(
+    SELECT *
+    FROM employees
+    WHERE salary > 60000
+)
+SELECT *
+FROM emp_cte;
+
+-- 3. DEPARTMENT WISE TOTAL SALARY
+WITH dept_salary AS
+(
+    SELECT department,
+           SUM(salary) AS total_salary
+    FROM employees
+    GROUP BY department
+)
+SELECT *
+FROM dept_salary;
+
+-- 4. DEPARTMENT WISE AVERAGE SALARY
+WITH dept_avg AS
+(
+    SELECT department,
+           AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department
+)
+SELECT *
+FROM dept_avg;
+
+-- 5. EMPLOYEES ABOVE DEPARTMENT AVERAGE
+WITH dept_avg AS
+(
+    SELECT department,
+           AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department
+)
+SELECT e.*
+FROM employees e
+JOIN dept_avg d
+ON e.department=d.department
+WHERE e.salary>d.avg_salary;
+
+-- 6. HIGHEST PAID EMPLOYEE
+WITH max_salary AS
+(
+    SELECT MAX(salary) AS max_sal
+    FROM employees
+)
+SELECT *
+FROM employees
+WHERE salary=(SELECT max_sal FROM max_salary);
+
+-- 7. RECURSIVE CTE
+WITH RECURSIVE numbers AS
+(
+    SELECT 1 AS n
+    UNION ALL
+    SELECT n+1
+    FROM numbers
+    WHERE n<10
+)
+SELECT *
+FROM numbers;
+
+-- 8. TOP 3 SALARIES
+WITH ranked_emp AS
+(
+    SELECT *,
+           DENSE_RANK() OVER(ORDER BY salary DESC) AS rnk
+    FROM employees
+)
+SELECT *
+FROM ranked_emp
+WHERE rnk<=3;
+
+-- 9. EMPLOYEE COUNT BY DEPARTMENT
+WITH dept_count AS
+(
+    SELECT department,
+           COUNT(*) AS total_emp
+    FROM employees
+    GROUP BY department
+)
+SELECT *
+FROM dept_count;
+
+-- 10. TOTAL COMPANY PAYROLL
+WITH payroll AS
+(
+    SELECT SUM(salary) AS total_payroll
+    FROM employees
+)
+SELECT *
+FROM payroll;
