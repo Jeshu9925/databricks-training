@@ -1,0 +1,16 @@
+CREATE TABLE employees (
+    emp_id INT,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT
+);
+
+INSERT INTO employees VALUES
+(1,'Amit','IT',60000),
+(2,'Ravi','HR',45000),
+(3,'Sneha','IT',75000),
+(4,'Kiran','Finance',55000),
+(5,'Priya','HR',50000),
+(6,'Arjun','IT',80000),
+(7,'Neha','Finance',65000),
+(8,'Vikas','IT',90000);
