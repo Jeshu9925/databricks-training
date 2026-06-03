@@ -1,0 +1,9 @@
+Big Sales dataset loaded successfully.
+
+Schema inferred successfully.
+
+Displayed first 10 rows.
+
+Displayed total row count.
+
+Displayed available columns.
