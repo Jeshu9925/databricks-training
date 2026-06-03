@@ -1,0 +1,90 @@
+-- 1. EMPLOYEES EARNING ABOVE AVERAGE SALARY
+SELECT *
+FROM employees
+WHERE salary >
+(
+    SELECT AVG(salary)
+    FROM employees
+);
+
+-- 2. EMPLOYEE WITH HIGHEST SALARY
+SELECT *
+FROM employees
+WHERE salary =
+(
+    SELECT MAX(salary)
+    FROM employees
+);
+
+-- 3. EMPLOYEE WITH LOWEST SALARY
+SELECT *
+FROM employees
+WHERE salary =
+(
+    SELECT MIN(salary)
+    FROM employees
+);
+
+-- 4. EMPLOYEES FROM DEPARTMENTS HAVING SALARY > 70000
+SELECT *
+FROM employees
+WHERE department IN
+(
+    SELECT department
+    FROM employees
+    WHERE salary > 70000
+);
+
+-- 5. EMPLOYEES NOT HAVING MAX SALARY
+SELECT *
+FROM employees
+WHERE salary <
+(
+    SELECT MAX(salary)
+    FROM employees
+);
+
+-- 6. SECOND HIGHEST SALARY
+SELECT MAX(salary)
+FROM employees
+WHERE salary <
+(
+    SELECT MAX(salary)
+    FROM employees
+);
+
+-- 7. EMPLOYEES IN IT DEPARTMENT
+SELECT *
+FROM employees
+WHERE department =
+(
+    SELECT department
+    FROM employees
+    WHERE emp_name='Amit'
+);
+
+-- 8. EMPLOYEES WITH SALARY GREATER THAN HR AVERAGE
+SELECT *
+FROM employees
+WHERE salary >
+(
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department='HR'
+);
+
+-- 9. EXISTS SUBQUERY
+SELECT *
+FROM employees e
+WHERE EXISTS
+(
+    SELECT 1
+    FROM employees
+    WHERE department=e.department
+);
+
+-- 10. COUNT EMPLOYEES PER DEPARTMENT
+SELECT department,
+COUNT(*)
+FROM employees
+GROUP BY department;
