@@ -1,0 +1,37 @@
+=== 1. Total order amount for each customer ===
+ customer_id  name  total_amount
+         1.0 Alice         450.0
+         2.0   Bob         130.0
+         4.0 David         300.0
+
+=== 2. Top 3 customers by total spend ===
+ customer_id  name  total_amount
+         1.0 Alice         450.0
+         4.0 David         300.0
+         2.0   Bob         130.0
+
+=== 3. Customers with no orders ===
+ customer_id    name
+         3.0 Charlie
+
+=== 4. City-wise total revenue ===
+       city  total_revenue
+Los Angeles          130.0
+   New York          750.0
+
+=== 5. Average order amount per customer ===
+ customer_id  name  avg_order_amount
+         1.0 Alice             150.0
+         2.0   Bob              65.0
+         4.0 David             300.0
+
+=== 6. Customers with more than one order ===
+ customer_id  name  order_count
+         1.0 Alice            3
+         2.0   Bob            2
+
+=== 7. Sort customers by total spend descending ===
+ customer_id  name  total_amount
+         1.0 Alice         450.0
+         4.0 David         300.0
+         2.0   Bob         130.0
