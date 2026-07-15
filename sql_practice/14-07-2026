@@ -165,4 +165,204 @@ having t_sal>200000
 select department,max(salary) as max_sal
 from employees
 group by department
-having max_sal>90000
+having max_sal>90000   
+
+
+
+-- Databricks notebook source
+--1
+select * from employees 
+order by salary desc
+limit 5
+
+
+-- COMMAND ----------
+
+--2
+select * from employees
+order by experience desc
+limit 3
+
+-- COMMAND ----------
+
+--3
+select department,salary from employees
+where department='Finance'
+order by salary desc
+limit 2
+
+-- COMMAND ----------
+
+--4
+select * from employees
+where city='Hyderabad'
+order by salary desc
+limit 4
+
+-- COMMAND ----------
+
+--5
+select * from employees
+order by salary desc
+limit 1
+
+-- COMMAND ----------
+
+--6
+select distinct department
+from employees
+
+-- COMMAND ----------
+
+--7
+select distinct city from employees
+
+-- COMMAND ----------
+
+--8
+select distinct salary from employees
+
+-- COMMAND ----------
+
+select distinct department,city from employees
+
+-- COMMAND ----------
+
+select distinct experience from employees
+
+-- COMMAND ----------
+
+--11
+select * from employees
+where salary >= 80000
+
+-- COMMAND ----------
+
+--12
+select * from employees
+where
+experience <= 3
+
+-- COMMAND ----------
+
+--13
+select * from employees
+where  salary <> 45000.
+
+-- COMMAND ----------
+
+--14
+select * from employees
+where  salary< 50000
+
+-- COMMAND ----------
+
+--15
+select * from employees
+where experience > 5.
+
+-- COMMAND ----------
+
+select * from employees
+where department='IT'
+and salary>70000
+
+-- COMMAND ----------
+
+--17
+select * from employees
+where city IN('Hyderabad', 'Banglore')
+
+-- COMMAND ----------
+
+--18
+select * from employees
+where department='HR'
+and experience<3
+
+-- COMMAND ----------
+
+--19
+select * from employees
+where salary>60000
+or experience>6
+
+-- COMMAND ----------
+
+--20
+select * from employees where department not in ('Sales')
+
+-- COMMAND ----------
+
+select * from employees where city IN ('Hyderabad', 'Mumbai')
+
+-- COMMAND ----------
+
+--22
+select * from employees where
+department IN ('IT', 'Finance')
+
+-- COMMAND ----------
+
+--23
+select * from employees where city NOT IN ('Chennai', 'Pune')
+
+-- COMMAND ----------
+
+--24
+select * from employees where salary IN (45000, 75000, 91000)
+
+-- COMMAND ----------
+
+--25
+select * from employees where department NOT IN ('HR', 'Sales')
+
+-- COMMAND ----------
+
+--26
+select * from employees where salary BETWEEN 50000 AND 80000
+
+-- COMMAND ----------
+
+--27
+select * from employees where experience BETWEEN 3 AND 6.
+
+-- COMMAND ----------
+
+--28
+select * from employees where emp_id BETWEEN 105 AND 112
+
+
+-- COMMAND ----------
+
+--29
+select * from employees where salary NOT BETWEEN 40000 AND 60000
+
+-- COMMAND ----------
+
+--30
+select * from employees where experience BETWEEN 2 AND 4
+
+-- COMMAND ----------
+
+--31
+select * from employees where emp_name like 'R%'
+
+-- COMMAND ----------
+
+select * from employees where emp_name like '%a'
+
+-- COMMAND ----------
+
+select * from employees where emp_name like '%v%'
+
+-- COMMAND ----------
+
+select * from employees where city like 'B%'
+
+-- COMMAND ----------
+
+select * from employees where department like '%s'
+
+
+
