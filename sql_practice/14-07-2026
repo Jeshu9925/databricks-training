@@ -1,1 +1,168 @@
+-- Databricks notebook source
 
+CREATE TABLE Employees (
+    emp_id INT,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT,
+    city VARCHAR(50),
+    experience INT
+);
+
+INSERT INTO Employees VALUES
+(101, 'Rahul', 'IT', 75000, 'Hyderabad', 5),
+(102, 'Anjali', 'HR', 45000, 'Chennai', 3),
+(103, 'Kiran', 'IT', 82000, 'Bangalore', 6),
+(104, 'Sneha', 'Finance', 67000, 'Hyderabad', 4),
+(105, 'Aman', 'HR', 39000, 'Pune', 2),
+(106, 'Ravi', 'Finance', 91000, 'Mumbai', 8),
+(107, 'Divya', 'IT', 55000, 'Chennai', 3),
+(108, 'Meena', 'Sales', 48000, 'Bangalore', 2),
+(109, 'Arjun', 'Sales', 61000, 'Hyderabad', 5),
+(110, 'Pooja', 'IT', 73000, 'Mumbai', 4),
+(111, 'Vikas', 'HR', 52000, 'Pune', 3),
+(112, 'Nisha', 'Finance', 88000, 'Bangalore', 7),
+(113, 'Tarun', 'Sales', 46000, 'Chennai', 2),
+(114, 'Kavya', 'IT', 97000, 'Hyderabad', 9),
+(115, 'Manoj', 'Finance', 58000, 'Mumbai', 4);
+
+-- COMMAND ----------
+
+--1 
+select * from employees
+
+-- COMMAND ----------
+
+--2
+select  emp_name,salary
+from employees
+
+-- COMMAND ----------
+
+--3
+select emp_name,department
+from employees
+
+-- COMMAND ----------
+
+--4
+select * from employees
+where department='IT'
+
+-- COMMAND ----------
+
+--5
+select emp_name,experience
+from employees
+
+-- COMMAND ----------
+
+--6
+select * from employees
+where salary > 70000
+
+-- COMMAND ----------
+
+--7
+select * from employees
+where city='Hyderabad'
+
+-- COMMAND ----------
+
+--8
+select * from employees
+where experience<4
+
+-- COMMAND ----------
+
+--9
+select * from employees
+where department='Finance'
+
+-- COMMAND ----------
+
+--10
+select * from employees
+where salary=52000
+
+-- COMMAND ----------
+
+--11
+select department,sum(salary) from employees
+group by department
+
+-- COMMAND ----------
+
+--12
+select department,avg(salary) from employees
+group by department
+
+-- COMMAND ----------
+
+--13
+select city,count(*) as emp_cnt 
+from employees 
+group by city
+
+-- COMMAND ----------
+
+--14
+select department,max(salary) as max_salary 
+from employees 
+group by department
+
+
+-- COMMAND ----------
+
+--15
+select department,min(experience) from employees
+group by department
+
+-- COMMAND ----------
+
+--16
+SELECT department, COUNT(*) AS emp_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 3;
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Departments with more than 3 employees
+--17
+select department, count(*) as emp_count
+from employees
+group by department
+having count(*) > 3
+
+-- COMMAND ----------
+
+--18
+select department,avg(salary) as avg_sal 
+from employees 
+group by department
+having avg(salary) > 60000
+
+-- COMMAND ----------
+
+--19
+select city, count(*) as emp_cnt 
+from employees 
+group by city
+having count(*) > 2
+
+
+-- COMMAND ----------
+
+--20
+select department,sum(salary) as t_sal
+from employees
+group by department
+having t_sal>200000
+
+-- COMMAND ----------
+
+select department,max(salary) as max_sal
+from employees
+group by department
+having max_sal>90000
