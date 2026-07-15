@@ -1,1 +1,262 @@
+-- Databricks notebook source
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    department VARCHAR(20),
+    city VARCHAR(30),
+    marks DECIMAL(5,2),
+    attendance INT
+);
+
+-- COMMAND ----------
+
+INSERT INTO Students
+(student_id, student_name, department, city, marks, attendance)
+VALUES
+(101,'Rahul','CS','Hyderabad',178.00,95),
+(102,'Anjali','IT','Bangalore',165.00,88),
+(103,'Kiran','CS','Chennai',150.00,91),
+(104,'Sneha','ECE','Hyderabad',140.00,82),
+(105,'Arjun','MECH','Pune',120.00,78),
+(106,'Priya','IT','Hyderabad',190.00,97),
+(107,'Vikram','CS','Bangalore',NULL,84),
+(108,'Neha','ECE','Chennai',155.00,89),
+(109,'Rohit','MECH','Hyderabad',98.00,65),
+(110,'Pooja','IT','Pune',175.00,92),
+(111,'Suresh','CS','Chennai',162.00,87),
+(112,'Deepa','ECE','Bangalore',145.00,90),
+(113,'Ajay','MECH','Hyderabad',130.00,73),
+(114,'Kavya','CS','Pune',185.00,96),
+(115,'Manoj','IT','Chennai',170.00,94),
+(116,'Divya','ECE','Hyderabad',NULL,80),
+(117,'Nikhil','MECH','Bangalore',158.00,86),
+(118,'Swathi','CS','Hyderabad',148.00,88),
+(119,'Harsha','IT','Pune',110.00,72),
+(120,'Keerthi','ECE','Chennai',182.00,99);
+
+-- COMMAND ----------
+
+select * from STUDENTS
+where marks>160;
+
+-- COMMAND ----------
+
+select * from students
+where department='CS';
+
+-- COMMAND ----------
+
+select *from students
+where marks>150 and attendance>85
+
+-- COMMAND ----------
+
+select * from students
+order by marks desc
+
+-- COMMAND ----------
+
+select * from students
+order by marks desc limit 3;
+
+-- COMMAND ----------
+
+select * from students
+order by marks limit 5
+
+-- COMMAND ----------
+
+select count(*) as row_count
+from students
+where department='CS'
+
+-- COMMAND ----------
+
+select count(*) as column_count
+from information_schema.columns 
+where table_name='students'
+
+-- COMMAND ----------
+
+select count(*) as null_values from students
+where marks is null
+
+-- COMMAND ----------
+
+update students
+set marks=(select avg(marks) from students)
+where marks is null
+
+-- COMMAND ----------
+
+update students
+set marks=(select avg(marks) from students)
+where marks is null
+
+-- COMMAND ----------
+
+select student_name,marks from students
+
+-- COMMAND ----------
+
+select marks,(marks*100/200) as percentage 
+from students;
+
+-- COMMAND ----------
+
+alter table students
+add column percentage decimal(5,2)
+
+-- COMMAND ----------
+
+update students
+set percentage=(marks*100/200)
+
+-- COMMAND ----------
+
+select * from students
+
+-- COMMAND ----------
+
+alter table students
+add column grade string
+
+-- COMMAND ----------
+
+select * from students
+
+-- COMMAND ----------
+
+update students 
+set grade=(case when percentage > 85 then 'A' when percentage > 70 then 'B' when percentage > 50 then 'C' else 'Fail' end)
+
+-- COMMAND ----------
+
+select * from students
+
+-- COMMAND ----------
+
+update students
+set marks=(marks + 5)
+
+-- COMMAND ----------
+
+select * from students
+
+-- COMMAND ----------
+
+alter table students
+add column result string
+
+-- COMMAND ----------
+
+update students 
+set result=(case when percentage >= 40 then "Pass" else "Fail" end)
+
+-- COMMAND ----------
+
+
+select * from students
+
+-- COMMAND ----------
+
+update students
+set student_name=(upper(student_name))
+
+-- COMMAND ----------
+
+select * from students
+
+-- COMMAND ----------
+
+select * from students
+order by city desc
+
+-- COMMAND ----------
+
+select department,avg(marks) as marks_avg from students
+group by department
+
+-- COMMAND ----------
+
+select city,max(marks) as max_mark from students
+group by city
+
+-- COMMAND ----------
+
+select department,count(*) as student_count from students
+group by department
+
+-- COMMAND ----------
+
+select department,avg_marks from(
+    select department,avg(marks) as avg_marks from students
+    group by department
+)
+order by avg_marks desc limit 1
+
+-- COMMAND ----------
+
+create table details(
+avg_marks int,
+department string,
+city string
+)
+
+-- COMMAND ----------
+
+insert into details (avg_marks, department, city)
+select avg(marks) as avg_marks, department, city
+from students
+group by department, city
+
+-- COMMAND ----------
+
+select * from details
+
+-- COMMAND ----------
+
+select * from students
+order by marks desc limit 1
+
+-- COMMAND ----------
+
+alter table students
+add column rank string
+
+-- COMMAND ----------
+
+update students
+set rank = (case when percentage >= 95 then 'Rank 1' else 'Rank 2' end)
+
+-- COMMAND ----------
+
+select * from students
+
+-- COMMAND ----------
+
+select student_name,avg_marks from(
+    select student_name,avg(marks) as avg_marks from students
+    group by student_name
+    having avg_marks > (select avg(marks) from students)
+)
+
+-- COMMAND ----------
+
+select * from students
+where percentage >= 90
+
+-- COMMAND ----------
+
+SELECT
+    student_id,
+    student_name,
+    marks,
+    (marks - (SELECT MIN(marks) FROM Students)) /
+    ((SELECT MAX(marks) FROM Students) - (SELECT MIN(marks) FROM Students))
+    AS scaled_marks
+FROM Students;
+
+-- COMMAND ----------
+
 
