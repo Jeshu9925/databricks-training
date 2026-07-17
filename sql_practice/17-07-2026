@@ -1,0 +1,400 @@
+-- Databricks notebook source
+CREATE or replace TABLE CurrentEmployees (
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2)
+);
+
+INSERT INTO CurrentEmployees VALUES
+(101,'John','HR',50000),
+(102,'Emma','Finance',65000),
+(103,'David','IT',70000),
+(104,'Sophia','IT',72000),
+(105,'Michael','Sales',55000),
+(106,'Olivia','Marketing',48000),
+(107,'James','Marketing',60000),
+(108,'William','IT',75000),
+(109,'Ava','Finance',52000),
+(110,'Isabella','Sales',68000);
+
+
+
+CREATE or replace TABLE FormerEmployees (
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2)
+);
+
+INSERT INTO FormerEmployees VALUES
+(105,'Michael','Sales',55000),
+(106,'Olivia','Marketing',48000),
+(111,'Lucas','HR',45000),
+(112,'Mia','Finance',62000),
+(113,'Ethan','IT',71000),
+(114,'Charlotte','Sales',53000),
+(115,'Benjamin','Operations',59000),
+(116,'Amelia','HR',51000),
+(117,'Henry','Finance',67000),
+(118,'Harper','IT',73000);
+
+
+
+
+
+CREATE or replace TABLE DomesticCustomers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    City VARCHAR(50)
+);
+
+INSERT INTO DomesticCustomers VALUES
+(1,'ABC Ltd','New York'),
+(2,'XYZ Corp','Chicago'),
+(3,'Global Tech','Dallas'),
+(4,'Sunrise Inc','Boston'),
+(5,'Bright Solutions','Seattle'),
+(6,'Alpha Systems','Miami');
+
+
+CREATE or replace TABLE InternationalCustomers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    City VARCHAR(50)
+);
+
+INSERT INTO InternationalCustomers VALUES
+(4,'Sunrise Inc','Boston'),
+(5,'Bright Solutions','Seattle'),
+(7,'TechWorld','London'),
+(8,'Future Corp','Toronto'),
+(9,'Vision Ltd','Dubai'),
+(10,'Skyline LLC','Sydney');
+
+
+CREATE or replace TABLE OnlineOrders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    Amount DECIMAL(10,2)
+);
+
+INSERT INTO OnlineOrders VALUES
+(1001,1,250),
+(1002,2,450),
+(1003,3,700),
+(1004,5,900),
+(1005,7,350),
+(1006,8,1200);
+
+
+
+CREATE or replace TABLE StoreOrders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    Amount DECIMAL(10,2)
+);
+
+INSERT INTO StoreOrders VALUES
+(1004,5,900),
+(1005,7,350),
+(1007,2,600),
+(1008,3,400),
+(1009,9,1100),
+(1010,10,850);
+
+
+
+-- COMMAND ----------
+
+--union
+--1
+SELECT EmployeeID, EmployeeName FROM CurrentEmployees
+UNION
+SELECT EmployeeID, EmployeeName FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--2
+SELECT CustomerID, CustomerName FROM DomesticCustomers
+UNION
+SELECT CustomerID, CustomerName FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--3
+SELECT Salary FROM CurrentEmployees
+UNION
+SELECT Salary FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--4
+SELECT OrderID FROM OnlineOrders
+UNION
+SELECT OrderID FROM StoreOrders;
+
+-- COMMAND ----------
+
+--5
+SELECT Department FROM CurrentEmployees
+UNION
+SELECT Department FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--union all
+SELECT COUNT(*) FROM (
+    SELECT EmployeeID FROM CurrentEmployees
+    UNION ALL
+    SELECT EmployeeID FROM FormerEmployees
+);
+
+-- COMMAND ----------
+
+--2
+SELECT * FROM DomesticCustomers
+UNION ALL
+SELECT * FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--3
+SELECT Salary FROM CurrentEmployees
+UNION ALL
+SELECT Salary FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--4
+SELECT City FROM DomesticCustomers
+UNION ALL
+SELECT City FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--5
+SELECT Amount FROM OnlineOrders
+UNION ALL
+SELECT Amount FROM StoreOrders;
+
+-- COMMAND ----------
+
+--except
+SELECT EmployeeID FROM CurrentEmployees
+EXCEPT
+SELECT EmployeeID FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--2
+SELECT EmployeeID FROM FormerEmployees
+EXCEPT
+SELECT EmployeeID FROM CurrentEmployees;
+
+-- COMMAND ----------
+
+--3
+SELECT CustomerID FROM DomesticCustomers
+EXCEPT
+SELECT CustomerID FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--4
+SELECT CustomerID FROM InternationalCustomers
+EXCEPT
+SELECT CustomerID FROM DomesticCustomers;
+
+-- COMMAND ----------
+
+--5
+SELECT OrderID FROM OnlineOrders
+EXCEPT
+SELECT OrderID FROM StoreOrders;
+
+-- COMMAND ----------
+
+--intersect
+--1
+SELECT EmployeeID FROM CurrentEmployees
+INTERSECT
+SELECT EmployeeID FROM FormerEmployees;
+
+
+-- COMMAND ----------
+
+--2
+SELECT CustomerID FROM DomesticCustomers
+INTERSECT
+SELECT CustomerID FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--3
+SELECT OrderID FROM OnlineOrders
+INTERSECT
+SELECT OrderID FROM StoreOrders;
+
+-- COMMAND ----------
+
+--4
+SELECT Salary FROM CurrentEmployees
+INTERSECT
+SELECT Salary FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--5
+SELECT Department FROM CurrentEmployees
+INTERSECT
+SELECT Department FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--ADVANCED ASSIGNMENTS
+--union
+--1
+SELECT EmployeeName FROM CurrentEmployees
+UNION
+SELECT CustomerName FROM DomesticCustomers;
+
+-- COMMAND ----------
+
+--2
+SELECT EmployeeName FROM CurrentEmployees
+UNION
+SELECT CustomerName FROM DomesticCustomers
+UNION
+SELECT CustomerName FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--3
+SELECT Department FROM CurrentEmployees
+UNION
+SELECT Department FROM FormerEmployees
+ORDER BY Department ASC;
+
+-- COMMAND ----------
+
+--4
+SELECT City FROM DomesticCustomers
+UNION
+SELECT Department FROM CurrentEmployees;
+
+-- COMMAND ----------
+
+--5
+SELECT EmployeeID AS ID FROM CurrentEmployees
+UNION
+SELECT CustomerID AS ID FROM DomesticCustomers;
+
+-- COMMAND ----------
+
+--union all
+--1
+SELECT * FROM CurrentEmployees
+UNION ALL
+SELECT * FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--2
+SELECT * FROM OnlineOrders
+UNION ALL
+SELECT * FROM StoreOrders;
+
+-- COMMAND ----------
+
+--3
+SELECT * FROM DomesticCustomers
+UNION ALL
+SELECT * FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--4
+SELECT 'Current' AS Source, EmployeeName FROM CurrentEmployees
+UNION ALL
+SELECT 'Former' AS Source, EmployeeName FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--5
+SELECT 'Online' AS Source, OrderID, CustomerID, Amount FROM OnlineOrders
+UNION ALL
+SELECT 'Store' AS Source, OrderID, CustomerID, Amount FROM StoreOrders;
+
+-- COMMAND ----------
+
+--except
+--1
+SELECT CustomerID FROM OnlineOrders
+EXCEPT
+SELECT CustomerID FROM StoreOrders;
+
+-- COMMAND ----------
+
+--2
+SELECT CustomerID FROM StoreOrders
+EXCEPT
+SELECT CustomerID FROM OnlineOrders;
+
+-- COMMAND ----------
+
+--3
+SELECT EmployeeName FROM CurrentEmployees
+EXCEPT
+SELECT EmployeeName FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--4
+SELECT Department FROM FormerEmployees
+EXCEPT
+SELECT Department FROM CurrentEmployees;
+
+-- COMMAND ----------
+
+--5
+SELECT City FROM DomesticCustomers
+EXCEPT
+SELECT City FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--intersect
+SELECT CustomerID FROM OnlineOrders
+INTERSECT
+SELECT CustomerID FROM StoreOrders;
+
+-- COMMAND ----------
+
+--2
+SELECT EmployeeID, EmployeeName FROM CurrentEmployees
+INTERSECT
+SELECT EmployeeID, EmployeeName FROM FormerEmployees;
+
+-- COMMAND ----------
+
+--3
+SELECT Department FROM CurrentEmployees
+INTERSECT
+SELECT Department FROM FormerEmployees;
+
+
+
+-- COMMAND ----------
+
+--4
+SELECT CustomerName FROM DomesticCustomers
+INTERSECT
+SELECT CustomerName FROM InternationalCustomers;
+
+-- COMMAND ----------
+
+--5
+SELECT Salary FROM CurrentEmployees
+INTERSECT
+SELECT Salary FROM FormerEmployees;
