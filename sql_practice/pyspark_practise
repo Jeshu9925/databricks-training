@@ -1,0 +1,26 @@
+employee_data = [
+    (101, "Alice", 25, "HR", 45000, "Chennai", "2022-01-15", 201),
+    (102, "Bob", 30, "IT", 70000, "Bangalore", "2021-06-20", 202),
+    (103, "Charlie", None, "IT", None, "Chennai", "2023-03-12", 202),
+    (104, "David", 28, "Finance", 65000, "Mumbai", "2020-09-18", 203),
+    (105, "Eva", 35, "HR", 80000, None, "2019-05-25", 201),
+    (106, "Frank", 29, "Marketing", 55000, "Hyderabad", None, 204),
+    (107, "Grace", 31, "Finance", None, "Pune", "2022-12-01", 203),
+    (108, "Henry", 26, "IT", 60000, "Bangalore", "2024-01-10", None)
+]
+
+employee_columns = [
+    "emp_id",
+    "name",
+    "age",
+    "department",
+    "salary",
+    "city",
+    "joining_date",
+    "manager_id"
+]
+
+employee_df = spark.createDataFrame(employee_data, employee_columns)
+
+employee_df.show()
+employee_df.printSchema()
